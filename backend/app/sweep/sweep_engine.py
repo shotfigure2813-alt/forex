@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 from app.core.models import Order, RobotState
-from skills.shared.sweep import detect_orphans, sweep_orders
+from backend.app.skills.sweep_engine.sweep_engine_module import SweepEngine
 
 
 class SweepAgent:
+    def __init__(self):
+        self.engine = SweepEngine()
+
     def detect_orphans(self, state: RobotState, broker_orders: list[Order]) -> list[Order]:
-        return detect_orphans(state=state, broker_orders=broker_orders)
+        return self.engine.detect_orphans(state=state, broker_orders=broker_orders)
 
     def sweep(self, orphans: list[Order]) -> list[Order]:
-        return sweep_orders(orphans)
+        return self.engine.sweep(orphans)
