@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from app.core.config import Settings
 from app.core.models import MarketTick, RiskDecision, RobotState
-from skills.risk_management.risk_guard import evaluate_risk
+from backend.app.skills.risk_engine.risk_guard import evaluate_risk
 
 
 class RiskGuardAgent:
